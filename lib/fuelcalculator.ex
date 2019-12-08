@@ -5,7 +5,12 @@ defmodule Fuelcalculator do
      divide by three, round down, and subtract 2.
     """
     @spec calculate(integer) :: integer
+    def calculate(mass) when mass <= 0 do
+        0
+    end
     def calculate(mass) do
-        trunc(mass / 3) - 2
+        fuel = trunc(mass / 3) - 2
+        fuel = max(0, fuel)
+        fuel + calculate(fuel)
     end
 end
